@@ -6,16 +6,14 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'GET  #index' do
 
-    let(:questions) {create_list(:question, 2)}
+    let(:questions) { create_list(:question, 2)}
 
-    before do  
-      get :index
-    end
+    before { get :index }
 
     it 'populates an array of all questions' do
       #question1 = FactoryGirl.create(:question)
       #question2 = FactoryGirl.create(:question)
-      get :index
+      #get :index
 
       #expect(assigns(:questions)).to match_array([question1, question2])
       expect(assigns(:questions)).to match_array(questions) 

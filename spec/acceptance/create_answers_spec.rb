@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 feature 'User answer', %q{
   In order to exchange my knowledge
   As an authenticated user
@@ -6,8 +7,9 @@ feature 'User answer', %q{
 } do
   
   given(:user) {create(:user)}
-  given(:question) {create(:question)}
-  scenario 'Authenticated user create answers' do
+  given!(:question) {create(:question)}
+
+  scenario 'Authenticated user create answers', js: true do
     sign_in(user)
     visit question_path(question)
 

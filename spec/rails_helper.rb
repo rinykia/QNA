@@ -47,14 +47,14 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
-  config.include AcceptanceHelper, type: :feature
+  #config.include AcceptanceHelper, type: :feature
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = false #Изменено
+  config.use_transactional_fixtures = true #Изменено/каждый тест оборачивается в транзакцию, этим управляет датабасе клианер.
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -76,6 +76,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.order = "random"
+
   config.before(:suite) do #выполняется код перед запуском всего фаила со спеками
     DatabaseCleaner.clean_with(:truncation) #очищаем бд с truncation(- это установка размера таблицы на 0)
   end
@@ -92,7 +93,7 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
-  config.before(:each) do #запускаем перед каждым тестом чистку
+  config.after(:each) do #запускаем перед каждым тестом чистку
     DatabaseCleaner.clean
   end
 end

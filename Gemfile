@@ -50,8 +50,9 @@ end
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails', '4.2.1'
-  gem 'selenium-webdriver'
+  #gem 'selenium-webdriver' заменен на gem 'capybara-webkit'
   gem 'database_cleaner'
+  gem 'capybara-webkit'
 end
 
 

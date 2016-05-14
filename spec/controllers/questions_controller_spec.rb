@@ -46,10 +46,14 @@ RSpec.describe QuestionsController, type: :controller do
     
     before { get :new }
 
-    it 'assigns a new Question' do
+    it 'assigns a new Question to @question' do
       expect(assigns(:question)).to be_a_new(Question)# проверяем что в перенной есть новый вопрос. вновь созданный экземпляр класса Question
     end
-
+    
+    it 'Builds new attachment for question' do
+      expect(assigns(:question).attachments.first).to be_a_new(Attachment)
+    end
+    
     it 'renders new view' do
       expect(response).to render_template :new
     end

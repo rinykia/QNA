@@ -1,4 +1,4 @@
-require 'rails_helper'
+ require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
   let!(:question) {create :question}
@@ -12,9 +12,9 @@ RSpec.describe AnswersController, type: :controller do
         expect { post :create, answer: attributes_for(:answer), question_id: question, format: :js }.to change(question.answers, :count).by(1) #код который выполняется внутри этого блока изменит Question.count на единицу
       end 
 
-      it 'render create template' do
+      it 'render nothing' do
         post :create, answer: attributes_for(:answer), question_id: question, format: :js
-        expect(response).to render_template :create
+        expect(response.body).to be_blank
       end     
     end
 

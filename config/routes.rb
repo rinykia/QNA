@@ -1,9 +1,32 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
-  devise_for :users
-  resources :questions do
-    resources :answers
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
-   root to: "questions#index"
+  use_doorkeeper
+  
+  devise_for :users, controllers: {omniauth_callbacks: 'omniauth_callbacks'}
+
+  concern :commentable do
+    resources :comments
+  end
+
+  resources :questions, concerns: :commentable, shallow: true do
+    resources :answers, concerns: :commentable
+  end
+  
+  namespace :api do
+    namespace :v1 do
+      resource :profiles do
+        get :me, on: :collection
+      end
+      resources :questions
+    end
+  end
+  #resources :answers, only: [], concerns: :commentable
+
+  root to: "questions#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -22,8 +22,14 @@ default: &default
   pool: 5
 
 development:
-  <<: *default
-  database: qna_development
+  adapter: postgresql
+  encoding: unicode
+  database: qna_dev
+  username: postgres
+  password: 12345
+  host: localhost
+  pool: 5
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

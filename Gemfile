@@ -26,6 +26,27 @@ gem 'slim-rails'
 gem 'devise'
 gem 'launchy'
 gem 'remotipart' #избегает ошибку ActionController::InvalidAuthenticityToken
+gem 'private_pub'
+gem 'thin'
+gem 'inherited_resources'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'responders'
+gem 'cancancan'
+gem 'pundit'
+gem 'doorkeeper'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'oj'
+gem 'oj_mimic_json'
+#gem 'delayed_job_active_record'
+gem 'whenever'
+gem 'sidekiq'
+gem 'sinatra', '>=1.3.0', require: nil
+gem 'sidetiq'
+gem 'mysql2'
+gem 'thinking-sphinx'
+gem 'redis-rails'
+#gem 'redis-throttle', git: 'git@github.com:andreareginato/redis-throttle.git'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -54,6 +75,7 @@ group :test, :development do
   #gem 'selenium-webdriver' заменен на gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'capybara-webkit'
+  gem 'json_spec'
 end
 
 
